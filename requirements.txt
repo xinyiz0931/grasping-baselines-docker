@@ -1,0 +1,44 @@
+opencv-python==4.1.2.30 
+open3d
+ipython
+networkx
+scipy
+h5py
+NearPy
+Pillow
+python-dateutil
+PyYAML
+scikit-image
+scikit-learn
+six
+trimesh
+pyhull
+pandas
+pyquaternion
+numba
+autolab-core
+autolab-perception
+visualization
+shapely
+rospkg
+imageio
+tensorboardx
+colorama
+click
+rich
+numpy
+cython
+pyglet==1.4.10
+ruamel-yaml==0.17.21
+vtk==8.1.0
+pyqt5
+mayavi
+gputil
+gdown
+PyOpenGL_accelerate
+psutil
+# nvidia-pyindex
+# nvidia-tensorflow[horovod]
+# nvidia-tensorboard==1.15
+
+
