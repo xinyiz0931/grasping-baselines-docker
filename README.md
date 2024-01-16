@@ -15,11 +15,12 @@ To reproduct some grasping baselines, I use conda environment in Docker. I use N
 
 2. Build docker image
 
+I set the `make -j5`. Before building the image, you can speed up the compile process by revising line 23 and 29.  
 ```
 docker build -t grasp-image .
 ```
 
-3. Create docker container using `create_container.sh` script
+1. Create docker container using `create_container.sh` script
 
 Here, I mount my local workspace (e.g., `/home/xinyi/code` where conatains the method repositories) in docker container (e.g., `/workspace`) using the following commands in this script: 
 
@@ -75,7 +76,8 @@ sh ./scripts/policies/run_all_dex-net_2.0_examples.sh
 ```
 sh scripts/training/train_dex-net_2.0.sh
 ```
-Reinstall gqcnn using `pip uninstall gqcnn` and `pip install .` will solve some problems. 
+
+Sometimes there would be bugs about input/output shape. Training script tends to revised the network architecture somewhere. Need to be revised the source code. However, if you only use it for the inference without finetuning, it would be alright. 
 
 ### Install PointNetGPD
 
