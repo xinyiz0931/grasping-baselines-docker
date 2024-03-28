@@ -1,4 +1,4 @@
-# GRASP-DOCKER
+# GRASP-BASELINE-DOCKER
 
 To reproduct some grasping baselines, I use conda environment in Docker. I use Nvidia RTX 4080. 
 
@@ -8,6 +8,21 @@ To reproduct some grasping baselines, I use conda environment in Docker. I use N
 - PyTorch 1.10.0
 - CUDA 11.3
 - cudnn 8.2.0
+- ROS melodic
+
+This docker evironment can be used for the following grasping methods. 
+
+- Conda env: `py36`
+  - Dex-Net
+  - PointNetGPD
+
+- Conda env: `py38`
+  - DexGraspNet
+  - UniDexGrasp
+
+- Both envs: 
+  - GraspNet
+  - GraspIt!
 
 ## Installation
 
@@ -20,7 +35,7 @@ I set the `make -j5`. Before building the image, you can speed up the compile pr
 docker build -t grasp-image .
 ```
 
-1. Create docker container using `create_container.sh` script
+3. Create and execute docker container using `launch.sh` script
 
 Here, I mount my local workspace (e.g., `/home/xinyi/code` where conatains the method repositories) in docker container (e.g., `/workspace`) using the following commands in this script: 
 
@@ -29,19 +44,18 @@ Here, I mount my local workspace (e.g., `/home/xinyi/code` where conatains the m
 ```
 The working directory would be synchronized. Replace the directory names to yours and execute this script. 
 ```
-sh create_container.sh
+sh launch.sh
 ```
 
-4. Start the container with some name like `grasp`
+4. Install the requirements for different grasping baselines as follows. 
 
+First, install some packages
+
+Install nvidia-opengl driver based on your nvidia driver version. 
 ```
-docker start grasp
-docker exec -it grasp /bin/bash
+nvidia_gl_ver=$(echo $(nvidia-smi --query-gpu=driver_version --format=csv,noheader) | cut -d '.' -f 1)
+apt-get install "libnvidia-gl-${nvidia_gl_ver}" -y
 ```
-
-5. Install the requirements for different grasping baselines as follows. 
-
-First, install some python packages 
 
 ```
 sh install-requisites.sh
@@ -115,3 +129,6 @@ The authors provide pytorch 1.6. But I use RTX 4080 with CUDA 11.3, I cannot use
 I install 1.10.0+cu113 instead. Check [here](https://pytorch.org/get-started/previous-versions/) to find the suitable pytorch and cuda. 
 (Note that I installed 1.10.1 and there're some bugs, so that I downgrade to 1.10.0 then it's great, other version has not been tested)
 
+### Install GraspIt
+
+Follow this [instruction](https://graspit-simulator.github.io/). 

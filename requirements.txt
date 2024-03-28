@@ -37,8 +37,5 @@ gputil
 gdown
 PyOpenGL_accelerate
 psutil
-# nvidia-pyindex
-# nvidia-tensorflow[horovod]
-# nvidia-tensorboard==1.15
 
 
